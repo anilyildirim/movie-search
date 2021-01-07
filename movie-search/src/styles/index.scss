@@ -3,4 +3,14 @@ html {
   p {
     color: darkblue;
   }
+
+  .fetch-data-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .fetch-data-item {
+    flex: 0 0 100px;
+    margin-right: 30px;
+  }
 }

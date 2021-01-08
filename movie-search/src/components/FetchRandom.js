@@ -11,7 +11,6 @@ export default class FetchRandomUser extends React.Component {
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ people: data.results, loading: false });
-    console.log('data :>> ', data.results[0]);
   }
 
   render() {

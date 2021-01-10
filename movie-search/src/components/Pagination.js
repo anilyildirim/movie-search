@@ -11,14 +11,18 @@ const Pagination = (props) => {
         <a>{i}</a>
       </li>
     )
+
+    console.log('props.currentPage :>> ', props.currentPage);
   }
 
   return (
     <div className="pagination-container">
       <ul className="pagination-list">
+        { props.currentPage > 1 ? <li className={`list-item prev-btn`} onClick={() => props.nextPage( props.currentPage - 1)}><a>Prev</a></li> : '' }
         {
           pageLinks
         }
+        { props.currentPage < props.pages ? <li className={`list-item prev-btn`} onClick={() => props.nextPage( props.currentPage + 1)}><a>Next</a></li> : '' }
       </ul>
     </div>
   )

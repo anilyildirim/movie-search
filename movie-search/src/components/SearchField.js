@@ -9,7 +9,8 @@ export default class SearchField extends React.Component {
     movies: [],
     searchQuery: '',
     totalResults: 0,
-    currentPage: 1
+    currentPage: 1,
+    noResults: false
   }
 
   API_KEY = "67508805549721088edd3895774656df"
@@ -25,8 +26,14 @@ export default class SearchField extends React.Component {
     fetch(movieUrl)
     .then(data => data.json())
     .then(data => {
-      console.log('data :>> ', data);
+      console.log('data :>> ', data.results);
       this.setState({ movies: data.results, isLoading: false, totalResults: data.total_results });
+
+      if ( !data.results.length ) {
+        this.setState({ noResults: true });
+      } else {
+        this.setState({ noResults: false });
+      }
     })
   }
 
@@ -42,13 +49,42 @@ export default class SearchField extends React.Component {
   }
 
   render() {
-   /*  if (this.state.isLoading) {
-      return <div>movies are getting loaded...</div>
+    if (this.state.isLoading) { 
+      fetch('https://api.themoviedb.org/3/movie/popular?api_key=67508805549721088edd3895774656df&language=en-US&page=1')
+      .then(data => data.json())
+      .then(data => {
+        console.log('data :>> ', data);
+        this.setState({ movies: data.results, isLoading: false });
+      })
+
+      return (
+        <div>
+          <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
+          <ul className="fetch-data-list">
+            { this.state.movies && this.state.movies.map(movie =>(
+              <li className="fetch-data-item" key={ movie.id }>
+                <article>
+                  <header>
+                    <h2>{ movie.original_title }</h2>
+                  </header>
+                  <img src={ `http://image.tmdb.org/t/p/w185/${ movie.poster_path }` } alt={ movie.title }/>
+                  <a href="">View Details</a>
+                </article>
+              </li>
+            )) }
+          </ul>
+        </div>
+      )
     }
 
-    if (!this.state.movies) {
-      return <div>can't find any movies</div>
-    } */
+    if ( this.state.noResults ) {
+      return (
+        <div>
+          <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
+          <strong>There are no results to be displayed. Please use different search queries</strong>
+        </div> 
+      )
+    }
 
     const numberPages = Math.floor(this.state.totalResults / 20) + 1;
 

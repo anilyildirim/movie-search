@@ -1,7 +1,9 @@
 import React from "react";
 import "../../.env";
-import SearchArea from "./SearchArea"
-import Pagination from "./Pagination"
+import SearchArea from "./SearchArea";
+import Pagination from "./Pagination";
+import MovieList from "./MovieList";
+import Movie from "./Movie";
 
 export default class SearchField extends React.Component {
   state = {
@@ -10,7 +12,8 @@ export default class SearchField extends React.Component {
     searchQuery: '',
     totalResults: 0,
     currentPage: 1,
-    noResults: false
+    noResults: false,
+    currentMovie: null
   }
 
   API_KEY = "67508805549721088edd3895774656df"
@@ -26,7 +29,6 @@ export default class SearchField extends React.Component {
     fetch(movieUrl)
     .then(data => data.json())
     .then(data => {
-      console.log('data :>> ', data.results);
       this.setState({ movies: data.results, isLoading: false, totalResults: data.total_results });
 
       if ( !data.results.length ) {
@@ -48,31 +50,29 @@ export default class SearchField extends React.Component {
     })
   }
 
+  viewMovieInfo = (id) => {
+    const filteredMovie = this.state.movies.filter(movie => movie.id == id);
+    const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
+
+    this.setState({ currentMovie: newCurrentMovie })
+  }
+
+  closeMovieInfo = () => {
+    this.setState({ currentMovie: null })
+  }
+
   render() {
     if (this.state.isLoading) { 
       fetch('https://api.themoviedb.org/3/movie/popular?api_key=67508805549721088edd3895774656df&language=en-US&page=1')
       .then(data => data.json())
       .then(data => {
-        console.log('data :>> ', data);
         this.setState({ movies: data.results, isLoading: false });
       })
 
       return (
         <div>
           <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
-          <ul className="fetch-data-list">
-            { this.state.movies && this.state.movies.map(movie =>(
-              <li className="fetch-data-item" key={ movie.id }>
-                <article>
-                  <header>
-                    <h2>{ movie.original_title }</h2>
-                  </header>
-                  <img src={ `http://image.tmdb.org/t/p/w185/${ movie.poster_path }` } alt={ movie.title }/>
-                  <a href="">View Details</a>
-                </article>
-              </li>
-            )) }
-          </ul>
+          { this.state.movies ? <MovieList movie={ this.state.movies } /> : '' }
         </div>
       )
     }
@@ -91,20 +91,7 @@ export default class SearchField extends React.Component {
     return (
       <div>
         <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
-        <ul className="fetch-data-list">
-          { this.state.movies && this.state.movies.map(movie =>(
-            <li className="fetch-data-item" key={ movie.id }>
-              <article>
-                <header>
-                  <h2>{ movie.original_title }</h2>
-                </header>
-                <img src={ `http://image.tmdb.org/t/p/w185/${ movie.poster_path }` } alt={ movie.title }/>
-                <a href="">View Details</a>
-                {/* <p>{ movie.overview }</p> */}
-              </article>
-            </li>
-          )) }
-        </ul>
+        { this.state.movies ? <MovieList movie={ this.state.movies } /> : '' }
         { this.state.totalResults > 20 ? <Pagination pages={ numberPages } nextPage={ this.nextPage } currentPage={ this.state.currentPage } /> : '' }
       </div>
     );

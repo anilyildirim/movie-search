@@ -11,8 +11,6 @@ const Pagination = (props) => {
         <a>{i}</a>
       </li>
     )
-
-    console.log('props.currentPage :>> ', props.currentPage);
   }
 
   return (

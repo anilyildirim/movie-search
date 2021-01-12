@@ -91,12 +91,16 @@ export default class SearchField extends React.Component {
 
     return (
       <div>
-        <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
         { this.state.movies && (this.state.currentMovie === null) ? 
-          <MovieList movie={ this.state.movies } viewMovieInfo={ this.viewMovieInfo } /> 
+          <div>
+            <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
+            <MovieList movie={ this.state.movies } viewMovieInfo={ this.viewMovieInfo } /> 
+            { this.state.totalResults > 20 ? 
+            <Pagination pages={ numberPages } nextPage={ this.nextPage } currentPage={ this.state.currentPage } /> : '' }
+          </div>
+          
           : <MovieDetails currentMovie={ this.state.currentMovie } closeMovieInfo={ this.closeMovieInfo }/> }
-        { this.state.totalResults > 20 ? 
-          <Pagination pages={ numberPages } nextPage={ this.nextPage } currentPage={ this.state.currentPage } /> : '' }
+        
       </div>
     );
   }

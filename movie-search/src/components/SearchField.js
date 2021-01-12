@@ -3,7 +3,7 @@ import "../../.env";
 import SearchArea from "./SearchArea";
 import Pagination from "./Pagination";
 import MovieList from "./MovieList";
-import Movie from "./Movie";
+import MovieDetails from "./MovieDetails";
 
 export default class SearchField extends React.Component {
   state = {
@@ -72,7 +72,8 @@ export default class SearchField extends React.Component {
       return (
         <div>
           <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
-          { this.state.movies ? <MovieList movie={ this.state.movies } /> : '' }
+          { this.state.movies ? 
+            <MovieList movie={ this.state.movies } viewMovieInfo={ this.viewMovieInfo }/> : '' }
         </div>
       )
     }
@@ -91,8 +92,11 @@ export default class SearchField extends React.Component {
     return (
       <div>
         <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
-        { this.state.movies ? <MovieList movie={ this.state.movies } /> : '' }
-        { this.state.totalResults > 20 ? <Pagination pages={ numberPages } nextPage={ this.nextPage } currentPage={ this.state.currentPage } /> : '' }
+        { this.state.movies && (this.state.currentMovie === null) ? 
+          <MovieList movie={ this.state.movies } viewMovieInfo={ this.viewMovieInfo } /> 
+          : <MovieDetails closeMovieInfo={ this.closeMovieInfo }/> }
+        { this.state.totalResults > 20 ? 
+          <Pagination pages={ numberPages } nextPage={ this.nextPage } currentPage={ this.state.currentPage } /> : '' }
       </div>
     );
   }

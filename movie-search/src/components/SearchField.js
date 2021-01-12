@@ -51,7 +51,7 @@ export default class SearchField extends React.Component {
   }
 
   viewMovieInfo = (id) => {
-    const filteredMovie = this.state.movies.filter(movie => movie.id == id);
+    const filteredMovie = this.state.movies.filter(movie => movie.id === id);
     const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
 
     this.setState({ currentMovie: newCurrentMovie })
@@ -94,7 +94,7 @@ export default class SearchField extends React.Component {
         <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
         { this.state.movies && (this.state.currentMovie === null) ? 
           <MovieList movie={ this.state.movies } viewMovieInfo={ this.viewMovieInfo } /> 
-          : <MovieDetails closeMovieInfo={ this.closeMovieInfo }/> }
+          : <MovieDetails currentMovie={ this.state.currentMovie } closeMovieInfo={ this.closeMovieInfo }/> }
         { this.state.totalResults > 20 ? 
           <Pagination pages={ numberPages } nextPage={ this.nextPage } currentPage={ this.state.currentPage } /> : '' }
       </div>

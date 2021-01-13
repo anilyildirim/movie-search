@@ -25,18 +25,21 @@ export default class SearchField extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${ this.API_KEY }&query=${ this.state.searchQuery }`;
-    fetch(movieUrl)
-    .then(data => data.json())
-    .then(data => {
-      this.setState({ movies: data.results, isLoading: false, totalResults: data.total_results });
+    if (this.state.searchQuery) {
+      const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${ this.API_KEY }&query=${ this.state.searchQuery }`;
+      fetch(movieUrl)
+      .then(data => data.json())
+      .then(data => {
+        this.setState({ movies: data.results, isLoading: false, totalResults: data.total_results });
 
-      if ( !data.results.length ) {
-        this.setState({ noResults: true });
-      } else {
-        this.setState({ noResults: false });
-      }
-    })
+        if ( !data.results.length ) {
+          this.setState({ noResults: true });
+        } else {
+          this.setState({ noResults: false });
+        }
+      })
+    }
+    
   }
 
   nextPage = (pageNumber) => {

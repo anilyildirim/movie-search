@@ -7,6 +7,7 @@ const SearchArea = (props) => {
         <form action="" onSubmit={ props.handleSubmit }>
           <div className="input-wrapper">
             <input placeholder="Search your movie" type="text" onChange={ props.handleChange }/>
+            <button type="submit">Search Movie</button>
           </div>
         </form>
       </div>

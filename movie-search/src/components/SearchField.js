@@ -83,7 +83,7 @@ export default class SearchField extends React.Component {
 
     if ( this.state.noResults ) {
       return (
-        <div>
+        <div className="search-field-wrapper">
           <SearchArea handleSubmit={this.handleSubmit} handleChange={ this.handleChange }/>
           <strong>There are no results to be displayed. Please use different search queries</strong>
         </div> 

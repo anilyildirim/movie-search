@@ -6,7 +6,7 @@ export default function Home() {
   
   return (
     <Layout>
-      <p> Welcome to most sophisticated and adorable movie search tool of the 21th century! Enjoy it! </p>
+      <p className="intro-text"> Welcome to most sophisticated movie search tool of the 21th century! Enjoy it! </p>
       <SearchField/>
     </Layout>
   )

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import logo from "../images/logo-black-bg.jpg";
 
 const ListLink = props => (
   <li>
@@ -13,11 +14,14 @@ export default function Layout({ children }) {
       <header>
         <div className="navigation">
           <Link to="/">
-            <span className="main-logo-text">MovieFinder</span>
+            <div className="logo-wrapper">
+              <img src={ logo } alt="page logo"/>
+            </div>
           </Link>
           <nav>
             <ul>
-              <ListLink to="/">Home</ListLink>
+              <ListLink to="/">First Link</ListLink>
+              <ListLink to="/">Second One</ListLink>
               <ListLink to="/404/">Not Found</ListLink>
             </ul>
           </nav>

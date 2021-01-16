@@ -14,9 +14,7 @@ export default function Layout({ children }) {
       <header>
         <div className="navigation">
           <Link to="/">
-            <div className="logo-wrapper">
-              <img src={ logo } alt="page logo"/>
-            </div>
+            <img src={ logo } alt="page logo"/>
           </Link>
           <nav>
             <ul>

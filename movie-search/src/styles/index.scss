@@ -26,6 +26,16 @@ html {
     margin: 0 auto;
     padding: 0px 70px;
 
+    & a img {
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+    }
+
+    nav {
+      display: none;
+    }
+
     nav ul {
       display: flex;
 
@@ -247,7 +257,7 @@ html {
     }
 
     .intro-text {
-      width: 80%;
+      max-width: 80%;
     }
 
     .fetch-data-item {
@@ -272,8 +282,12 @@ html {
       padding: 0px 20px;
     }
 
+    .navigation {
+      justify-content: center;
+    }
+
     .intro-text {
-      width: 100%;
+      max-width: 90%;
     }
 
     .search-bar-inner {
@@ -288,9 +302,19 @@ html {
 
 @media only screen and (max-width: 480px) {
   html {
+    form .input-wrapper {
+      flex-direction: column;
 
-    .search-bar-inner {
-      width: 100%;
+      input {
+        border: 1px solid  #525252;
+        border-radius: 2px;
+        margin-bottom: 5px;
+      }
+
+      button {
+        border-radius: 2px;
+        height: 40px;
+      }
     }
 
     .fetch-data-item {

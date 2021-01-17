@@ -14,9 +14,11 @@ const MovieDetails = (props) => {
           <img src={ `http://image.tmdb.org/t/p/w185/${ props.currentMovie.poster_path }` } alt={ props.currentMovie.alt }/>
         </div>
         <div>
+          <h3>Overview:</h3>
           <p>{ props.currentMovie.overview }</p>
+          <h3>Release Date:</h3>
           <p>
-            Release Date: { props.currentMovie.release_date }
+            { props.currentMovie.release_date }
           </p>
         </div>
       </article>

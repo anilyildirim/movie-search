@@ -1,7 +1,7 @@
 html {
   background-color: #f2f2f2;
-  font-family: 'Roboto', sans-serif;
-  
+  font-family: 'Work Sans', 'Roboto', sans-serif;
+
   body {
     padding: 0;
     margin: 0;
@@ -14,6 +14,12 @@ html {
     ::selection {
       background-color: #525252;
       color: #f2f2f2;
+    }
+
+    p,
+    h2,
+    h3 {
+      color: #525252;
     }
   }
 
@@ -70,11 +76,9 @@ html {
 
   .intro-text {
     font-size: 2rem;
-    font-style: italic;
     max-width: 70%;
     margin: 50px auto;
     color: #525252;
-    letter-spacing: 2px;
     text-align: center;
   }
 
@@ -119,6 +123,7 @@ html {
       &:focus,
       &:hover {
         background-color: #fbffbd;
+        border-color: transparent;
       }
     }
 
@@ -166,6 +171,13 @@ html {
       margin-right: 0;
     }
 
+    article h2 {
+      color: #525252;
+      letter-spacing: -2px;
+      font-weight: 400;
+      text-align: center;
+    }
+
     article img {
       width: 100%;
     }
@@ -173,24 +185,44 @@ html {
     article a {
       display: flex;
       justify-content: center;
-      padding: 5px;
-      background: rgb(41, 41, 41);
-      color: white;
+      padding: 8px;
+      background-color: #525252;
+      color: #f2f2f2;
       text-decoration: underline;
       margin: 15px auto 0 auto;
       cursor: pointer;
+      transition: all 200ms ease-in-out;
+
+      &:focus,
+      &:hover {
+        background-color: #303030;
+      }
     }
   }
 
   .movie-details {
+    max-width: 70%;
+    margin: 0 auto;
+
     button {
-      margin-top: 30px;
       border: none;
-      color: white;
-      background-color: rgb(41, 41, 41);
-      padding: 5px 10px;
+      padding: 10px 20px;
       font-size: 1.25rem;
       cursor: pointer;
+      background-color: #525252;
+      color: #f2f2f2;
+      border-radius: 10px;
+      margin: 0 auto;
+      display: block;
+
+      &:focus,
+      &:hover {
+        background-color: #303030;
+      }
+      &:focus,
+      &:hover {
+        background-color: #303030;
+      }
     }
 
     article {
@@ -201,6 +233,13 @@ html {
       & div:first-child {
         margin-right: 50px;
       }
+    }
+
+    article h2 {
+      color: #525252;
+      letter-spacing: -2px;
+      font-weight: 400;
+      text-align: center;
     }
   }
 
@@ -256,7 +295,8 @@ html {
       padding: 0px 50px;
     }
 
-    .intro-text {
+    .intro-text,
+    .movie-details {
       max-width: 80%;
     }
 
@@ -286,7 +326,8 @@ html {
       justify-content: center;
     }
 
-    .intro-text {
+    .intro-text,
+    .movie-details {
       max-width: 90%;
     }
 
